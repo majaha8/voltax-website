@@ -1,0 +1,23 @@
+{
+  "name": "voltax-website",
+  "version": "1.2.0",
+  "description": "Static marketing website for Voltax — electrical and infrastructure solutions across South Africa.",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test tests/*.test.js",
+    "lint": "node tests/lint.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "static-site",
+    "electrical",
+    "gauteng",
+    "landing-page"
+  ],
+  "author": "Voltax",
+  "license": "MIT"
+}
