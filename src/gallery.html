@@ -1,273 +1,110 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gallery - Voltax</title>
 <link rel="icon" href="public/favicon.ico" sizes="any">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-  <div class="container">
-    <div class="navbar-brand">
-      <a href="/" class="navbar-item has-text-weight-bold is-size-5">⚡ VOLTAX</a>
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="voltax-nav">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-    <div id="voltax-nav" class="navbar-menu">
-      <div class="navbar-end">
-        <a class="navbar-item" href="/">Home</a>
-        <a class="navbar-item" href="/about">About</a>
-        <a class="navbar-item" href="/services">Services</a>
-        <a class="navbar-item is-active" href="/gallery">Gallery</a>
-        <a class="navbar-item" href="/contact">Contact</a>
-        <a class="navbar-item has-text-primary has-text-weight-semibold" href="tel:+27679912218">📞 +27 67 991 2218</a>
-        <div class="navbar-item">
-          <a class="button is-primary" href="/contact"><strong>Get a Free Quote</strong></a>
-        </div>
-      </div>
-    </div>
-  </div>
+<nav class="nav">
+  <a href="/" class="nav-logo"><span class="bolt">⚡</span>VOLT-WATT</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/services">Services</a></li>
+    <li><a href="/gallery">Gallery</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+  <a href="tel:+27679912218" class="nav-phone"><span class="dot"></span>+27 67 991 2218</a>
+  <a href="/contact" class="nav-cta">Get a Free Quote</a>
+  <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
 </nav>
 
-<!-- PAGE HEADER -->
-<section class="hero is-small is-link is-bold">
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <span class="tag is-light mb-3">Our Work</span>
-      <h1 class="title">Project Gallery</h1>
-      <p class="subtitle">A showcase of electrical and infrastructure projects completed by the Voltax team across South Africa.</p>
-    </div>
-  </div>
-</section>
+<div class="page-header">
+  <h1>Project Gallery</h1>
+  <p>A showcase of electrical and infrastructure projects completed by the Voltax team across South Africa.</p>
+</div>
 
-<section class="section pt-4 pb-0">
-  <div class="container">
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li class="is-active"><a href="#" aria-current="page">Gallery</a></li>
-      </ul>
-    </nav>
-  </div>
-</section>
-
-<!-- ELECTRICAL -->
-<section class="section pt-0">
-  <div class="container">
-    <h2 class="title">Installations &amp; Repairs</h2>
-    <p class="subtitle">Electrical projects.</p>
-    <div class="columns is-multiline mt-5">
-      <div class="column is-12-mobile is-6-tablet is-4-desktop">
-        <div class="card">
-          <figure class="image is-4by3 mb-0">
-            <img src="images/electrician.jpeg" alt="Electrician installing a distribution board indoors">
-          </figure>
-          <div class="card-footer"><p class="card-footer-item">Distribution board install — Residential</p></div>
-        </div>
-      </div>
-      <div class="column is-12-mobile is-6-tablet is-4-desktop">
-        <div class="card">
-          <figure class="image is-4by3 mb-0">
-            <img src="images/field-work.jpeg" alt="Electrician performing on-site fault finding outdoors">
-          </figure>
-          <div class="card-footer"><p class="card-footer-item">On-site fault finding — Residential</p></div>
-        </div>
-      </div>
-      <div class="column is-12-mobile is-6-tablet is-4-desktop">
-        <div class="card has-text-centered">
-          <div class="card-content">
-            <p class="title is-size-2 mb-2">⚡</p>
-            <p class="heading">Commercial Wiring</p>
-          </div>
-          <div class="card-footer"><p class="card-footer-item">Office fit-out — Commercial</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECURITY -->
-<section class="section has-background-black-bis">
-  <div class="container">
-    <h2 class="title">Security Systems</h2>
-    <p class="subtitle">Security projects.</p>
-    <div class="columns is-multiline mt-5">
-      <div class="column is-12-mobile is-6-tablet is-4-desktop">
-        <div class="card has-text-centered">
-          <div class="card-content">
-            <p class="title is-size-2 mb-2">📷</p>
-            <p class="heading">CCTV Network</p>
-          </div>
-          <div class="card-footer"><p class="card-footer-item">Retail centre — CCTV install</p></div>
-        </div>
-      </div>
-      <div class="column is-12-mobile is-6-tablet is-4-desktop">
-        <div class="card has-text-centered">
-          <div class="card-content">
-            <p class="title is-size-2 mb-2">🔐</p>
-            <p class="heading">Access Control</p>
-          </div>
-          <div class="card-footer"><p class="card-footer-item">Office HQ — Access control</p></div>
-        </div>
-      </div>
-      <div class="column is-12-mobile is-6-tablet is-4-desktop">
-        <div class="card has-text-centered">
-          <div class="card-content">
-            <p class="title is-size-2 mb-2">🚨</p>
-            <p class="heading">Alarm System</p>
-          </div>
-          <div class="card-footer"><p class="card-footer-item">Warehouse — Alarm system</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SOLAR -->
 <section class="section">
   <div class="container">
-    <h2 class="title">Solar Installations</h2>
-    <p class="subtitle">Solar projects.</p>
-    <div class="columns is-multiline mt-5">
-      <div class="column is-12-mobile is-6-tablet is-4-desktop">
-        <div class="card has-text-centered">
-          <div class="card-content">
-            <p class="title is-size-2 mb-2">☀️</p>
-            <p class="heading">Rooftop Solar</p>
-          </div>
-          <div class="card-footer"><p class="card-footer-item">Farm property — Rooftop solar</p></div>
-        </div>
-      </div>
-      <div class="column is-12-mobile is-6-tablet is-4-desktop">
-        <div class="card has-text-centered">
-          <div class="card-content">
-            <p class="title is-size-2 mb-2">🔋</p>
-            <p class="heading">Battery Backup</p>
-          </div>
-          <div class="card-footer"><p class="card-footer-item">Clinic — Battery backup</p></div>
-        </div>
-      </div>
-      <div class="column is-12-mobile is-6-tablet is-4-desktop">
-        <div class="card has-text-centered">
-          <div class="card-content">
-            <p class="title is-size-2 mb-2">☀️</p>
-            <p class="heading">Commercial Solar</p>
-          </div>
-          <div class="card-footer"><p class="card-footer-item">Factory — Commercial solar</p></div>
-        </div>
-      </div>
-    </div>
+    <div class="section-tag">Electrical Projects</div>
+    <h2 class="section-title">Installations &amp; Repairs</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item has-photo"><img src="images/db.jpeg" alt="Electrician installing a distribution board indoors"><div class="gallery-label">Distribution board install — Residential</div></div>
+    <div class="gallery-item has-photo"><img src="images/field-work.jpeg" alt="Electrician performing on-site fault finding outdoors"><div class="gallery-label">On-site fault finding — Residential</div></div>
+    <div class="gallery-item"><div class="gallery-placeholder">⚡<span>Commercial Wiring</span></div><div class="gallery-label">Office fit-out — Commercial</div></div>
   </div>
 </section>
 
-<!-- NETWORK -->
-<section class="section has-background-black-bis">
+<section class="section" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
   <div class="container">
-    <h2 class="title">Network Infrastructure</h2>
-    <p class="subtitle">Network projects.</p>
-    <div class="columns is-multiline mt-5">
-      <div class="column is-12-mobile is-6-tablet is-4-desktop">
-        <div class="card has-text-centered">
-          <div class="card-content">
-            <p class="title is-size-2 mb-2">📡</p>
-            <p class="heading">Server Room</p>
-          </div>
-          <div class="card-footer"><p class="card-footer-item">Data centre — Server room fit-out</p></div>
-        </div>
-      </div>
-      <div class="column is-12-mobile is-6-tablet is-4-desktop">
-        <div class="card has-text-centered">
-          <div class="card-content">
-            <p class="title is-size-2 mb-2">🌐</p>
-            <p class="heading">Fibre Cabling</p>
-          </div>
-          <div class="card-footer"><p class="card-footer-item">Campus — Fibre cabling</p></div>
-        </div>
-      </div>
-      <div class="column is-12-mobile is-6-tablet is-4-desktop">
-        <div class="card has-text-centered">
-          <div class="card-content">
-            <p class="title is-size-2 mb-2">📡</p>
-            <p class="heading">Wireless Network</p>
-          </div>
-          <div class="card-footer"><p class="card-footer-item">Hotel — Wireless network</p></div>
-        </div>
-      </div>
-    </div>
+    <div class="section-tag">Security Projects</div>
+    <h2 class="section-title">Security Systems</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><div class="gallery-placeholder">📷<span>CCTV Network</span></div><div class="gallery-label">Retail centre — CCTV install</div></div>
+    <div class="gallery-item"><div class="gallery-placeholder">🔐<span>Access Control</span></div><div class="gallery-label">Office HQ — Access control</div></div>
+    <div class="gallery-item"><div class="gallery-placeholder">🚨<span>Alarm System</span></div><div class="gallery-label">Warehouse — Alarm system</div></div>
   </div>
 </section>
 
-<!-- CTA -->
 <section class="section">
   <div class="container">
-    <div class="notification is-link has-text-centered">
-      <h2 class="title">Want results like these?</h2>
-      <p class="subtitle">Get in touch and let us deliver your next project to the same standard.</p>
-      <a href="/contact" class="button is-light mt-3">Start Your Project</a>
-    </div>
+    <div class="section-tag">Solar Projects</div>
+    <h2 class="section-title">Solar Installations</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><div class="gallery-placeholder">☀️<span>Rooftop Solar</span></div><div class="gallery-label">Farm property — Rooftop solar</div></div>
+    <div class="gallery-item"><div class="gallery-placeholder">🔋<span>Battery Backup</span></div><div class="gallery-label">Clinic — Battery backup</div></div>
+    <div class="gallery-item"><div class="gallery-placeholder">☀️<span>Commercial Solar</span></div><div class="gallery-label">Factory — Commercial solar</div></div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<section class="section" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="container">
+      <div class="section-tag">Electrical Projects</div>
+      <h2 class="section-title">Residential &amp; Commercial</h2>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <div class="gallery-placeholder">💡<span>Household Electrical</span></div>
+        <div class="gallery-label">Residential — Electrical installation &amp; lighting</div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-placeholder">⚡<span>Electrical Installation</span></div>
+        <div class="gallery-label">Commercial — Electrical installation &amp; upgrades</div>
+      </div>
+
+      <div class="gallery-item">
+        <div class="gallery-placeholder">🔌<span>Electrical Repairs</span></div>
+        <div class="gallery-label">Residential &amp; Commercial — Fault finding &amp; repairs</div>
+      </div>
+    </div>
+</section>
+
+<div class="cta-banner">
+  <h2>Want results like these?</h2>
+  <p>Get in touch and let us deliver your next project to the same standard.</p>
+  <a href="/contact" class="btn-primary">Start Your Project</a>
+</div>
+
 <footer class="footer">
-  <div class="container">
-    <div class="columns">
-      <div class="column is-12-mobile is-6-tablet is-3-desktop">
-        <p class="title is-4">⚡ VOLTAX</p>
-        <div class="content">
-          <p>Certified electrical and infrastructure solutions company delivering quality, safety and innovation across South Africa since 2013.</p>
-        </div>
-        <div class="buttons">
-          <a href="#" class="button is-small is-rounded" aria-label="LinkedIn">in</a>
-          <a href="#" class="button is-small is-rounded" aria-label="Facebook">fb</a>
-          <a href="#" class="button is-small is-rounded" aria-label="Twitter">tw</a>
-        </div>
-      </div>
-      <div class="column is-6-mobile is-6-tablet is-3-desktop">
-        <p class="title is-6">Site</p>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/services">Services</a></li>
-          <li><a href="/gallery">Gallery</a></li>
-          <li><a href="/contact">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="column is-6-mobile is-6-tablet is-3-desktop">
-        <p class="title is-6">Services</p>
-        <ul>
-          <li><a href="/services">Electrical Installations</a></li>
-          <li><a href="/services">Maintenance &amp; Repairs</a></li>
-          <li><a href="/services">Network Infrastructure</a></li>
-          <li><a href="/services">Security Systems</a></li>
-          <li><a href="/services">Solar Solutions</a></li>
-        </ul>
-      </div>
-      <div class="column is-6-mobile is-6-tablet is-3-desktop">
-        <p class="title is-6">Contact</p>
-        <ul>
-          <li><a href="tel:+27679912218">+27 67 991 2218</a></li>
-          <li><a href="mailto:voltwattielectrical@gmail.com">voltwattielectrical@gmail.com</a></li>
-          <li><a href="#">Johannesburg, South Africa</a></li>
-          <li><span class="has-text-grey">Emergency: 24/7</span></li>
-        </ul>
-      </div>
-    </div>
-    <hr class="mt-5">
-    <div class="is-flex is-flex-wrap-wrap is-justify-content-space-between is-align-items-center">
-      <p>© 2026 Voltax. All rights reserved.</p>
-      <div class="is-flex is-gap-4">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms &amp; Conditions</a>
-      </div>
-    </div>
+  <div class="footer-inner">
+    <div class="footer-brand"><a href="/" class="nav-logo"><span class="bolt">⚡</span>VOLT-WATT</a><p>Certified electrical and infrastructure solutions company delivering quality, safety and innovation across South Africa since 2025.</p></div>
+    <div><h4>Site</h4><ul><li><a href="/">Home</a></li><li><a href="/about">About Us</a></li><li><a href="/services">Services</a></li><li><a href="/gallery">Gallery</a></li><li><a href="/contact">Contact Us</a></li></ul></div>
+    <div><h4>Services</h4><ul><li><a href="/services">Electrical Installations</a></li><li><a href="/services">Maintenance &amp; Repairs</a></li><li><a href="/services">Network Infrastructure</a></li><li><a href="/services">Security Systems</a></li><li><a href="/services">Solar Solutions</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="tel:+27679912218">+27 67 991 2218</a></li><li><a href="mailto:voltwattielectrical@gmail.com">voltwattielectrical@gmail.com</a></li><li><a href="#">Johannesburg, South Africa</a></li></ul></div>
   </div>
+  <div class="footer-bottom"><p>© 2026 Voltax. All rights reserved.</p><div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a></div></div>
 </footer>
 <script src="script.js"></script>
 </body>

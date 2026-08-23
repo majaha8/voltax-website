@@ -9,6 +9,9 @@ const src = path.join(root, 'src');
 const PAGES = ['index.html', 'about.html', 'services.html', 'gallery.html', 'contact.html'];
 const STYLESHEET = 'style.css';
 
+// Classes provided by the Bulma CDN stylesheet (index.html only), not by style.css
+const FRAMEWORK_CLASSES = new Set(['is-overlay', 'columns', 'column', 'is-vcentered']);
+
 const read = (p) => fs.readFileSync(path.join(src, p), 'utf8');
 
 test('all pages exist', () => {
@@ -57,6 +60,7 @@ test('every CSS class used in HTML exists in the stylesheet', () => {
       for (const cls of m[1].trim().split(/\s+/)) used.add(cls);
     }
     for (const cls of used) {
+      if (FRAMEWORK_CLASSES.has(cls)) continue;
       assert.ok(
         css.includes(`.${cls}`),
         `${page} uses .${cls} but it is not defined in ${STYLESHEET}`
