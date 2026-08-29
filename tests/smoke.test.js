@@ -37,7 +37,7 @@ for (const page of PAGES) {
 }
 
 test('core assets exist', () => {
-  for (const file of [path.join(src, STYLESHEET), path.join(src, 'script.js'), path.join(root, 'public/favicon.ico')]) {
+  for (const file of [path.join(src, STYLESHEET), path.join(src, 'script.js'), path.join(src, 'public/favicon.ico')]) {
     assert.ok(fs.existsSync(file), `${file} is missing`);
   }
 });
@@ -85,7 +85,7 @@ test('script.js defines functions the pages call inline', () => {
 });
 
 test('favicon is a valid ICO file', () => {
-  const buf = fs.readFileSync(path.join(root, 'public/favicon.ico'));
+  const buf = fs.readFileSync(path.join(src, 'public/favicon.ico'));
   assert.strictEqual(buf.readUInt16LE(0), 0, 'reserved bytes must be 0');
   assert.strictEqual(buf.readUInt16LE(2), 1, 'type must be 1 (icon)');
   assert.ok(buf.readUInt16LE(4) >= 1, 'must contain at least one image');
@@ -94,7 +94,7 @@ test('favicon is a valid ICO file', () => {
 test('project scaffolding is in place', () => {
   for (const dir of [
     'src/components', 'src/pages', 'src/services', 'src/utils', 'src/assets',
-    'public/images', 'public/icons', 'tests', 'docs',
+    'src/public/images', 'src/public/icons', 'tests', 'docs',
   ]) {
     assert.ok(fs.existsSync(path.join(root, dir)), `directory ${dir} is missing`);
   }
@@ -118,7 +118,7 @@ test('internal links resolve to real routes', () => {
       if (href.startsWith('/')) {
         target = path.join(src, ROUTES[href] || href.slice(1) + '.html');
       } else if (href.startsWith('public/')) {
-        target = path.join(root, href);
+        target = path.join(src, href);
       } else {
         target = path.join(src, href);
       }

@@ -4,7 +4,7 @@ const path = require('node:path');
 
 const ROOT = __dirname;
 const SRC = path.join(ROOT, 'src');
-const PUBLIC = path.join(ROOT, 'public');
+const PUBLIC = path.join(SRC, 'public');
 const PORT = Number(process.env.PORT) || 3000;
 
 const MIME = {

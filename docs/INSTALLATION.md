@@ -6,7 +6,7 @@
 - [Node.js](https://nodejs.org/) 18+ (optional — only needed for `npm start`
   and `npm test`)
 
-The site is fully static. You can simply open `index.html` in a browser and
+The site is fully static. You can simply open `src/index.html` in a browser and
 everything works.
 
 ## Running Locally
@@ -34,7 +34,7 @@ Then open <http://localhost:3000>.
 
 ### Option 3 — Just open the file
 
-Double-click `index.html`. All pages, styles, scripts, and the favicon are
+Double-click `src/index.html`. All pages, styles, scripts, and the favicon are
 referenced with relative paths, so everything works from the filesystem too.
 
 ## Environment Variables
@@ -50,14 +50,15 @@ cp .env.example .env
 
 ## Deployment
 
-Any static host works:
+All site files (HTML, `style.css`, `script.js`, `public/`) live under `src/`.
+Deploys must use `src` as the publish directory:
 
 | Host            | Command / setting                          |
 | --------------- | ------------------------------------------ |
-| Netlify         | Drag-and-drop the folder, or connect repo  |
-| Vercel          | Framework preset: **Other**, output dir `.` |
-| GitHub Pages    | Serve from branch root                     |
-| Any web server  | Upload all files; `index.html` is the entry |
+| Netlify         | `netlify.toml` in the repo sets publish = `src`; no build command |
+| Vercel          | Framework preset: **Other**, output dir `src` |
+| GitHub Pages    | Serve from `src` (or push src to a branch) |
+| Any web server  | Upload the contents of `src/`; `src/index.html` is the entry |
 
 No build command is needed.
 
