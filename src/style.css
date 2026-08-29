@@ -729,6 +729,66 @@ section, .page-header, .hero, .footer {
   margin: 0 auto;
 }
 
+/* ---------- SERVICES PAGE EXTRAS ---------- */
+
+.alt-bg {
+  background: var(--card);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.services-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+}
+
+.services-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy-800);
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.services-nav a i { color: var(--amber-dark); font-size: 0.85em; }
+
+.services-nav a:hover {
+  border-color: var(--amber-dark);
+  background: var(--amber-tint);
+  transform: translateY(-2px);
+}
+
+.about-list.checklist li::before { content: none; }
+
+.about-list.checklist li {
+  padding-left: 1.6rem;
+}
+
+.about-list.checklist li i.fa-check {
+  position: absolute;
+  left: 0;
+  top: 0.32rem;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--amber-tint);
+  color: var(--amber-dark);
+  font-size: 0.55rem;
+}
+
 /* ---------- ABOUT ---------- */
 
 .about-inner {
@@ -1009,6 +1069,8 @@ section, .page-header, .hero, .footer {
 
 .contact-item h4 { font-size: 0.98rem; margin-bottom: 0.15rem; }
 .contact-item p { color: var(--muted); font-size: 0.93rem; }
+.contact-item p a { color: var(--navy-800); font-weight: 600; }
+.contact-item p a:hover { color: var(--amber-dark); }
 
 .contact-form {
   background: var(--card);
@@ -1076,7 +1138,12 @@ section, .page-header, .hero, .footer {
   border: 1px solid rgba(30, 158, 90, 0.35);
   color: #157a45;
   font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
 }
+
+.form-success i { color: var(--success); }
 
 .map-box {
   max-width: 1180px;
