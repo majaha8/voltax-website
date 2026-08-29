@@ -10,12 +10,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav class="nav">
-    <a href="/" class="nav-logo"><span class="bolt">⚡</span>VOLT-WATT</a>
+    <a href="/" class="nav-logo"><span class="bolt"><i class="fa-solid fa-bolt"></i></span>VOLT-WATT</a>
 
   <ul class="nav-links" id="navLinks">
     <li><a href="/">Home</a></li>
@@ -26,7 +27,7 @@
   </ul>
   <a href="tel:+27679912218" class="nav-phone"><span class="dot"></span>+27 67 991 2218</a>
   <a href="/contact" class="nav-cta">Get a Free Quote</a>
-  <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+  <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
 </nav>
 
 <!-- HERO -->
@@ -38,11 +39,16 @@
       <div class="columns is-vcentered">
         <div class="column hero-content">
 
+          <div class="hero-eyebrow-row">
+            <span class="hero-pill"><i class="fa-solid fa-shield-halved"></i> SANS Certified</span>
+            <span class="hero-pill"><i class="fa-solid fa-clock"></i> 24/7 Emergency</span>
+          </div>
+
           <h1>Electrical work done <em>properly</em>, first time</h1>
-          <p>Voltax is a certified electrical and infrastructure team serving homes and businesses across South Africa — installations, maintenance, solar and backup power, handled by one accountable crew.</p>
+          <p>Volt-Watt is a certified electrical and infrastructure team serving homes and businesses across South Africa — installations, maintenance, solar and backup power, handled by one accountable crew.</p>
           <div class="hero-btns">
-            <a href="/contact" class="btn-primary">Get a Free Quote</a>
-            <a href="tel:+27679912218" class="btn-secondary">Call +27 67 991 2218</a>
+            <a href="/contact" class="btn-primary"><i class="fa-solid fa-file-invoice"></i> Get a Free Quote</a>
+            <a href="tel:+27679912218" class="btn-secondary"><i class="fa-solid fa-phone"></i> Call +27 67 991 2218</a>
           </div>
         </div>
 
@@ -56,19 +62,19 @@
   <div class="container">
     <div class="trust-grid">
       <div class="trust-item">
-        <div class="trust-icon">🛡️</div>
+        <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
         <div><h4>Certified &amp; Insured</h4><p>Work signed off to SANS standards.</p></div>
       </div>
       <div class="trust-item">
-        <div class="trust-icon">⚡</div>
+        <div class="trust-icon"><i class="fa-solid fa-bolt"></i></div>
         <div><h4>24/7 Emergency</h4><p>Fast response when the power fails.</p></div>
       </div>
       <div class="trust-item">
-        <div class="trust-icon">💬</div>
+        <div class="trust-icon"><i class="fa-solid fa-comments-dollar"></i></div>
         <div><h4>Free, Honest Quotes</h4><p>Clear pricing before we start.</p></div>
       </div>
       <div class="trust-item">
-        <div class="trust-icon">📍</div>
+        <div class="trust-icon"><i class="fa-solid fa-location-dot"></i></div>
         <div><h4>South Africa Wide</h4><p>One accountable team, nationwide.</p></div>
       </div>
     </div>
@@ -84,37 +90,37 @@
   </div>
   <div class="services-grid">
     <div class="service-card">
-      <div class="service-icon">⚡</div>
+      <div class="service-icon"><i class="fa-solid fa-bolt"></i></div>
       <h3>Electrical Installations</h3>
       <p>Full installations for residential, commercial and industrial properties, certified to standard.</p>
       <a href="/services" class="service-link">Learn more</a>
     </div>
     <div class="service-card">
-      <div class="service-icon">🔧</div>
+      <div class="service-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
       <h3>Maintenance &amp; Repairs</h3>
       <p>Preventive maintenance and rapid-response repairs that keep your systems running.</p>
       <a href="/services" class="service-link">Learn more</a>
     </div>
     <div class="service-card">
-      <div class="service-icon">☀️</div>
+      <div class="service-icon"><i class="fa-solid fa-solar-panel"></i></div>
       <h3>Solar Solutions</h3>
       <p>Grid-tied and hybrid solar with battery backup — stop load-shedding dictating your day.</p>
       <a href="/services" class="service-link">Learn more</a>
     </div>
     <div class="service-card">
-      <div class="service-icon">📡</div>
+      <div class="service-icon"><i class="fa-solid fa-house-signal"></i></div>
       <h3>House Wiring</h3>
-      <p>Structured cabling, fibre and server room setups that future-proof your business.</p>
+      <p>Complete rewiring, plug points, switches and circuit upgrades for new builds, renovations and older homes.</p>
       <a href="/services" class="service-link">Learn more</a>
     </div>
     <div class="service-card">
-      <div class="service-icon">📷</div>
+      <div class="service-icon"><i class="fa-solid fa-video"></i></div>
       <h3>Security Systems</h3>
       <p>CCTV, access control and alarm systems installed and commissioned properly.</p>
       <a href="/services" class="service-link">Learn more</a>
     </div>
     <div class="service-card">
-      <div class="service-icon">🏗️</div>
+      <div class="service-icon"><i class="fa-solid fa-diagram-project"></i></div>
       <h3>Project Management</h3>
       <p>End-to-end delivery from design and procurement through to sign-off and handover.</p>
       <a href="/services" class="service-link">Learn more</a>
@@ -126,25 +132,29 @@
 </section>
 
 <!-- PROCESS -->
-<section class="section" style="background:#061423;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+<section class="section process-section">
 
     <div class="container text-center">
     <div class="section-tag">How It Works</div>
     <h2 class="section-title">Three steps to a safe, sorted job</h2>
+    <p class="section-subtitle" style="margin:0 auto;">No jargon, no surprises — here's exactly what happens from the moment you call.</p>
   </div>
   <div class="process-grid">
-    <div class="process-step">
+    <div class="process-card">
       <div class="process-num">01</div>
+      <div class="process-icon"><i class="fa-solid fa-phone-volume"></i></div>
       <h3>Tell us what's wrong</h3>
       <p>Call +27 67 991 2218 or send a quick quote request. Describe the fault or the job and we'll give you a free, honest price.</p>
     </div>
-    <div class="process-step">
+    <div class="process-card">
       <div class="process-num">02</div>
+      <div class="process-icon"><i class="fa-solid fa-bolt"></i></div>
       <h3>We diagnose and fix it</h3>
-      <p>A certified Voltax electrician arrives, finds the real cause, and does the work properly — explaining it plainly as we go.</p>
+      <p>A certified Volt-Watt electrician arrives, finds the real cause, and does the work properly — explaining it plainly as we go.</p>
     </div>
-    <div class="process-step">
+    <div class="process-card">
       <div class="process-num">03</div>
+      <div class="process-icon"><i class="fa-solid fa-certificate"></i></div>
       <h3>Certified and safe</h3>
       <p>Where the job calls for it, we issue the paperwork to prove the work is safe and up to standard.</p>
     </div>
@@ -159,22 +169,22 @@
   </div>
   <div class="why-grid">
     <div class="why-card">
-      <div class="why-icon">🛡️</div>
+      <div class="why-icon"><i class="fa-solid fa-shield-halved"></i></div>
       <h3>Certified work</h3>
       <p>Every job is done to SANS standard, with certificates issued where the work calls for one.</p>
     </div>
     <div class="why-card">
-      <div class="why-icon">💬</div>
+      <div class="why-icon"><i class="fa-solid fa-comments-dollar"></i></div>
       <h3>Upfront quotes</h3>
       <p>A clear, honest quote before we start — no call-out surprises, no jargon.</p>
     </div>
     <div class="why-card">
-      <div class="why-icon">⚡</div>
+      <div class="why-icon"><i class="fa-solid fa-bolt"></i></div>
       <h3>Fast response</h3>
       <p>A tripping board or a burning smell can't wait. Our emergency line moves fast.</p>
     </div>
     <div class="why-card">
-      <div class="why-icon">🤝</div>
+      <div class="why-icon"><i class="fa-solid fa-handshake"></i></div>
       <h3>One accountable team</h3>
       <p>The same crew from quote to sign-off — no subcontractor hand-offs.</p>
     </div>
@@ -210,7 +220,7 @@
       <div class="gallery-label">On-site fault finding &amp; fitting</div>
     </div>
     <div class="gallery-item">
-      <div class="gallery-placeholder">☀️<span>Solar Install</span></div>
+      <div class="gallery-placeholder"><i class="fa-solid fa-solar-panel"></i><span>Solar Install</span></div>
       <div class="gallery-label">Rooftop solar &amp; battery backup</div>
     </div>
   </div>
@@ -224,8 +234,8 @@
   <h2>Need an electrician you can rely on?</h2>
   <p>Get a free quote and we'll sort it — certified, clearly priced, and done right.</p>
   <div class="hero-btns">
-    <a href="/contact" class="btn-primary">Get a Free Quote</a>
-    <a href="tel:+27679912218" class="btn-secondary">Call +27 67 991 2218</a>
+    <a href="/contact" class="btn-primary"><i class="fa-solid fa-file-invoice"></i> Get a Free Quote</a>
+    <a href="tel:+27679912218" class="btn-secondary"><i class="fa-solid fa-phone"></i> Call +27 67 991 2218</a>
   </div>
 </div>
 
@@ -233,9 +243,13 @@
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <a href="/" class="nav-logo"><span class="bolt">⚡</span>VOLT-WATT</a>
+      <a href="/" class="nav-logo"><span class="bolt"><i class="fa-solid fa-bolt"></i></span>VOLT-WATT</a>
       <p>Certified electrical and infrastructure solutions company delivering quality, safety and innovation across South Africa since 2025.</p>
-
+      <div class="socials">
+        <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
     </div>
     <div>
       <h4>Site</h4>
@@ -247,23 +261,14 @@
         <li><a href="/contact">Contact Us</a></li>
       </ul>
     </div>
-    <div>
-      <h4>Services</h4>
-      <ul>
-        <li><a href="/services">Electrical Installations</a></li>
-        <li><a href="/services">Maintenance &amp; Repairs</a></li>
-        <li><a href="/services">Solar Solutions</a></li>
-        <li><a href="/services">House Wiring</a></li>
-        <li><a href="/services">Security Systems</a></li>
-      </ul>
-    </div>
+
     <div>
       <h4>Contact</h4>
       <ul>
-        <li><a href="tel:+27679912218">+27 67 991 2218</a></li>
-        <li><a href="mailto:voltwattielectrical@gmail.com">voltwattielectrical@gmail.com</a></li>
-        <li><a href="#">Johannesburg, South Africa</a></li>
-        <li>Mon–Fri 7am–6pm, Sat 8am–2pm</li>
+        <li><a href="tel:+27679912218"><i class="fa-solid fa-phone"></i> +27 67 991 2218</a></li>
+        <li><a href="mailto:voltwattielectrical@gmail.com"><i class="fa-solid fa-envelope"></i> voltwattielectrical@gmail.com</a></li>
+        <li><a href="#"><i class="fa-solid fa-location-dot"></i> Johannesburg, South Africa</a></li>
+
       </ul>
     </div>
   </div>
