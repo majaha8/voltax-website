@@ -1,0 +1,15 @@
+<nav class="nav">
+  <a href="/" class="nav-logo"><span class="bolt"><i class="fa-solid fa-bolt"></i></span>VOLT-WATT</a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/" {% if active == 'home' %}class="active"{% endif %}>Home</a></li>
+    <li><a href="/about" {% if active == 'about' %}class="active"{% endif %}>About</a></li>
+    <li><a href="/services" {% if active == 'services' %}class="active"{% endif %}>Services</a></li>
+    <li><a href="/gallery" {% if active == 'gallery' %}class="active"{% endif %}>Gallery</a></li>
+    <li><a href="/contact" {% if active == 'contact' %}class="active"{% endif %}>Contact</a></li>
+  </ul>
+
+  <a href="tel:+27679912218" class="nav-phone"><span class="dot"></span>+27 67 991 2218</a>
+  <a href="/contact" class="nav-cta">Get a Free Quote</a>
+  <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+</nav>

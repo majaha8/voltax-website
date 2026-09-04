@@ -1,33 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Services - Volt-Watt</title>
-<meta name="description" content="Certified electrical installations, maintenance, solar, house wiring, security systems and project management for homes and businesses across South Africa.">
-<link rel="icon" href="public/favicon.ico" sizes="any">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+{% extends "base.html" %}
 
-<nav class="nav">
-  <a href="/" class="nav-logo"><span class="bolt"><i class="fa-solid fa-bolt"></i></span>VOLT-WATT</a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="/">Home</a></li>
-    <li><a href="/about">About</a></li>
-    <li><a href="/services" class="active">Services</a></li>
+{% block title %}<title>Services - Volt-Watt</title>{% endblock %}
+{% block description %}<meta name="description" content="Certified electrical installations, maintenance, solar, house wiring, security systems and project management for homes and businesses across South Africa.">{% endblock %}
 
-    <li><a href="/contact">Contact</a></li>
-  </ul>
-  <a href="tel:+27679912218" class="nav-phone"><span class="dot"></span>+27 67 991 2218</a>
-  <a href="/contact" class="nav-cta">Get a Free Quote</a>
-  <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
-</nav>
-
+{% block content %}
 <div class="page-header">
 
   <h1>Our Services</h1>
@@ -181,38 +157,4 @@
     <a href="tel:+27679912218" class="btn-secondary"><i class="fa-solid fa-phone"></i> Call +27 67 991 2218</a>
   </div>
 </div>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="/" class="nav-logo"><span class="bolt"><i class="fa-solid fa-bolt"></i></span>VOLT-WATT</a>
-      <p>Certified electrical and infrastructure solutions company delivering quality, safety and innovation across South Africa.</p>
-    </div>
-    <div>
-      <h4>Site</h4>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About Us</a></li>
-        <li><a href="/services">Services</a></li>
-        <li><a href="/contact">Contact Us</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="tel:+27679912218"><i class="fa-solid fa-phone"></i> +27 67 991 2218</a></li>
-        <li><a href="mailto:voltwattielectrical@gmail.com"><i class="fa-solid fa-envelope"></i> voltwattielectrical@gmail.com</a></li>
-        <li><a href="#"><i class="fa-solid fa-location-dot"></i> Johannesburg, South Africa</a></li>
-
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2026 Volt-Watt. All rights reserved.</p>
-    <div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a></div>
-  </div>
-</footer>
-<script src="script.js"></script>
-</body>
-</html>
+{% endblock %}
