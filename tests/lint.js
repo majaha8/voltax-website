@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.join(__dirname, '..');
-const src = path.join(root, 'src');
+const dist = path.join(root, 'dist');
 let failed = false;
 
 function check(file, fn) {
@@ -17,7 +17,7 @@ function check(file, fn) {
 
 for (const page of ['index.html', 'about.html', 'services.html', 'gallery.html', 'contact.html']) {
   check(page, () => {
-    const html = fs.readFileSync(path.join(src, page), 'utf8');
+    const html = fs.readFileSync(path.join(dist, page), 'utf8');
     for (const tag of ['html', 'head', 'body', 'main', 'header', 'footer']) {
       const open = (html.match(new RegExp(`<${tag}[\\s>]`, 'g')) || []).length;
       const close = (html.match(new RegExp(`</${tag}>`, 'g')) || []).length;
@@ -28,7 +28,7 @@ for (const page of ['index.html', 'about.html', 'services.html', 'gallery.html',
 }
 
 check('script.js', () => {
-  const js = fs.readFileSync(path.join(src, 'script.js'), 'utf8');
+  const js = fs.readFileSync(path.join(dist, 'script.js'), 'utf8');
   if (/console\.log/.test(js)) throw new Error('contains console.log');
 });
 

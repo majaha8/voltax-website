@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Gallery - Voltax</title>{% endblock %}
+{% block description %}<meta name="description" content="A showcase of electrical and infrastructure projects completed by the Voltax team across South Africa.">{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Project Gallery</h1>
+  <p>A showcase of electrical and infrastructure projects completed by the Voltax team across South Africa.</p>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Our Work</div>
+    <h2 class="section-title">Recent Projects</h2>
+  </div>
+  <div class="gallery-grid">
+    {% for image in images %}
+    <div class="gallery-item has-photo"><img src="images/{{ image.file | urlencode }}" alt="{{ image.label }}"><div class="gallery-label">{{ image.label }}</div></div>
+    {% else %}
+    <div class="gallery-item"><div class="gallery-placeholder">⚡<span>Coming Soon</span></div><div class="gallery-label">Project photos coming soon</div></div>
+    {% endfor %}
+  </div>
+</section>
+
+<div class="cta-banner">
+  <h2>Want results like these?</h2>
+  <p>Get in touch and let us deliver your next project to the same standard.</p>
+  <a href="/contact" class="btn-primary">Start Your Project</a>
+</div>
+{% endblock %}
