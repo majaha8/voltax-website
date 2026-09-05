@@ -5,18 +5,19 @@ solutions company serving residential, commercial, and industrial clients
 across South Africa — electrical installations, maintenance, network
 infrastructure, security systems, solar, and project management.
 
-Built with plain HTML, CSS, and vanilla JavaScript. No frameworks, no build
-step, zero runtime dependencies.
+Built with plain HTML/CSS/JS and [Nunjucks](https://mozilla.github.io/nunjucks/)
+templates. Pages are authored as templates in `src/templates/`, rendered to
+`dist/` by `build.js`, and served statically. Zero runtime dependencies.
 
 ## Pages
 
-| Page         | File             | Purpose                                  |
-| ------------ | ---------------- | ---------------------------------------- |
-| Home         | `index.html`     | Hero, stats, services preview, partners  |
-| About        | `about.html`     | Story, values, leadership team           |
-| Services     | `services.html`  | Full service catalogue                   |
-| Gallery      | `gallery.html`   | Completed project showcase               |
-| Contact      | `contact.html`   | Contact details + enquiry form           |
+| Page         | Template                | Purpose                                  |
+| ------------ | ----------------------- | ---------------------------------------- |
+| Home         | `src/templates/index.html`     | Hero, stats, services preview, partners  |
+| About        | `src/templates/about.html`     | Story, values, leadership team           |
+| Services     | `src/templates/services.html`  | Full service catalogue                   |
+| Gallery      | `src/templates/gallery.html`   | Completed project showcase               |
+| Contact      | `src/templates/contact.html`   | Contact details + enquiry form           |
 
 ## Project Structure
 
@@ -31,27 +32,28 @@ voltax/
 ├── .env.example
 ├── package.json
 ├── package-lock.json
-├── server.js              ← bundled zero-dependency dev server
+├── build.js              ← renders templates → dist/
+├── server.js             ← zero-dependency dev server (serves dist/)
 │
-├── index.html …           ← live pages (root-level so any host works)
-├── style.css              ← single global stylesheet (tokens in :root)
-├── script.js              ← shared client-side behaviour
+├── src/                  ← source (edit these, never dist/)
+│   ├── templates/        ← Nunjucks page templates
+│   │   ├── base.html     ← shared layout (head, nav, footer)
+│   │   ├── index.html    ← Home
+│   │   ├── about.html    ← About
+│   │   ├── services.html ← Services
+│   │   ├── gallery.html  ← Gallery
+│   │   ├── contact.html  ← Contact
+│   │   └── partials/     ← nav.html, footer.html (shared)
+│   ├── style.css         ← single global stylesheet
+│   ├── script.js         ← shared client-side behaviour
+│   ├── images/           ← site images
+│   └── public/           ← favicon, etc.
 │
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── services/
-│   ├── utils/
-│   └── assets/
-│
-├── public/
-│   ├── images/
-│   ├── icons/
-│   └── favicon.ico
+├── dist/                 ← build output (git-ignored, generated)
 │
 ├── tests/
-│   ├── smoke.test.js      ← page/asset/link/CSS-coverage checks
-│   └── lint.js            ← tag balance & hygiene checks
+│   ├── smoke.test.js     ← page/asset/link/CSS-coverage checks
+│   └── lint.js           ← tag balance & hygiene checks
 │
 └── docs/
     ├── INSTALLATION.md
@@ -62,12 +64,14 @@ voltax/
 ## Quick Start
 
 ```bash
-npm start     # serve locally at http://localhost:3000 (PORT=8080 to change)
+npm start     # build + serve locally at http://localhost:3000 (PORT=8080 to change)
 npm test      # run smoke tests (Node built-in test runner)
 npm run lint  # tag-balance & hygiene checks
 ```
 
-No install step required — there are no dependencies.
+To edit content, change the templates in `src/templates/`, then run
+`npm start` (or `npm run build`) to regenerate `dist/`. Never edit files in
+`dist/` — they are overwritten on every build.
 
 ## Documentation
 

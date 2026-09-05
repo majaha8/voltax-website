@@ -5,18 +5,21 @@ const path = require('node:path');
 
 const root = path.join(__dirname, '..');
 const src = path.join(root, 'src');
+const dist = path.join(root, 'dist');
 
 const PAGES = ['index.html', 'about.html', 'services.html', 'gallery.html', 'contact.html'];
 const STYLESHEET = 'style.css';
 
-// Classes provided by the Bulma CDN stylesheet (index.html only), not by style.css
+// Classes provided by the Bulma and Font Awesome CDN stylesheets, not by style.css
 const FRAMEWORK_CLASSES = new Set(['is-overlay', 'columns', 'column', 'is-vcentered']);
+const isFrameworkClass = (cls) =>
+  FRAMEWORK_CLASSES.has(cls) || cls.startsWith('fa-') || /^(fa|fas|far|fab)\b/.test(cls);
 
-const read = (p) => fs.readFileSync(path.join(src, p), 'utf8');
+const read = (p) => fs.readFileSync(path.join(dist, p), 'utf8');
 
 test('all pages exist', () => {
   for (const page of PAGES) {
-    assert.ok(fs.existsSync(path.join(src, page)), `${page} is missing`);
+    assert.ok(fs.existsSync(path.join(dist, page)), `${page} is missing`);
   }
 });
 
@@ -37,7 +40,7 @@ for (const page of PAGES) {
 }
 
 test('core assets exist', () => {
-  for (const file of [path.join(src, STYLESHEET), path.join(src, 'script.js'), path.join(src, 'public/favicon.ico')]) {
+  for (const file of [path.join(dist, STYLESHEET), path.join(dist, 'script.js'), path.join(dist, 'public/favicon.ico')]) {
     assert.ok(fs.existsSync(file), `${file} is missing`);
   }
 });
@@ -60,7 +63,7 @@ test('every CSS class used in HTML exists in the stylesheet', () => {
       for (const cls of m[1].trim().split(/\s+/)) used.add(cls);
     }
     for (const cls of used) {
-      if (FRAMEWORK_CLASSES.has(cls)) continue;
+      if (isFrameworkClass(cls)) continue;
       assert.ok(
         css.includes(`.${cls}`),
         `${page} uses .${cls} but it is not defined in ${STYLESHEET}`
@@ -85,7 +88,7 @@ test('script.js defines functions the pages call inline', () => {
 });
 
 test('favicon is a valid ICO file', () => {
-  const buf = fs.readFileSync(path.join(src, 'public/favicon.ico'));
+  const buf = fs.readFileSync(path.join(dist, 'public/favicon.ico'));
   assert.strictEqual(buf.readUInt16LE(0), 0, 'reserved bytes must be 0');
   assert.strictEqual(buf.readUInt16LE(2), 1, 'type must be 1 (icon)');
   assert.ok(buf.readUInt16LE(4) >= 1, 'must contain at least one image');
@@ -93,17 +96,25 @@ test('favicon is a valid ICO file', () => {
 
 test('project scaffolding is in place', () => {
   for (const dir of [
-    'src/components', 'src/pages', 'src/services', 'src/utils', 'src/assets',
-    'src/public/images', 'src/public/icons', 'tests', 'docs',
+    'src/templates', 'src/templates/partials', 'src/images', 'src/public', 'tests', 'docs', 'dist',
   ]) {
     assert.ok(fs.existsSync(path.join(root, dir)), `directory ${dir} is missing`);
   }
   for (const file of [
     'README.md', 'LICENSE', 'CHANGELOG.md', 'CONTRIBUTING.md', 'SECURITY.md',
-    '.gitignore', '.env.example', 'package.json', 'package-lock.json', 'server.js',
+    '.gitignore', '.env.example', 'package.json', 'package-lock.json', 'server.js', 'build.js',
     'docs/INSTALLATION.md', 'docs/API.md', 'docs/USER_GUIDE.md',
   ]) {
     assert.ok(fs.existsSync(path.join(root, file)), `file ${file} is missing`);
+  }
+});
+
+test('every template page has a generated counterpart in dist', () => {
+  const templateDirEntries = fs.readdirSync(path.join(root, 'src/templates'))
+    .filter((f) => f.endsWith('.html'));
+  for (const tpl of templateDirEntries) {
+    if (tpl === 'base.html') continue;
+    assert.ok(fs.existsSync(path.join(dist, tpl)), `templates/${tpl} has no output in dist`);
   }
 });
 
@@ -116,11 +127,11 @@ test('internal links resolve to real routes', () => {
       if (/^(https?:|mailto:|tel:)|^#$/.test(href)) continue;
       let target;
       if (href.startsWith('/')) {
-        target = path.join(src, ROUTES[href] || href.slice(1) + '.html');
+        target = path.join(dist, ROUTES[href] || href.slice(1) + '.html');
       } else if (href.startsWith('public/')) {
-        target = path.join(src, href);
+        target = path.join(dist, href);
       } else {
-        target = path.join(src, href);
+        target = path.join(dist, href);
       }
       assert.ok(
         fs.existsSync(target),
