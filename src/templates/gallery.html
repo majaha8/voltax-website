@@ -11,62 +11,16 @@
 
 <section class="section">
   <div class="container">
-    <div class="section-tag">Electrical Projects</div>
-    <h2 class="section-title">Installations &amp; Repairs</h2>
+    <div class="section-tag">Our Work</div>
+    <h2 class="section-title">Recent Projects</h2>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item has-photo"><img src="images/db.jpeg" alt="Electrician installing a distribution board indoors"><div class="gallery-label">Distribution board install — Residential</div></div>
-    <div class="gallery-item has-photo"><img src="images/field-work.jpeg" alt="Electrician performing on-site fault finding outdoors"><div class="gallery-label">On-site fault finding — Residential</div></div>
-    <div class="gallery-item"><div class="gallery-placeholder">⚡<span>Commercial Wiring</span></div><div class="gallery-label">Office fit-out — Commercial</div></div>
+    {% for image in images %}
+    <div class="gallery-item has-photo"><img src="images/{{ image.file | urlencode }}" alt="{{ image.label }}"><div class="gallery-label">{{ image.label }}</div></div>
+    {% else %}
+    <div class="gallery-item"><div class="gallery-placeholder">⚡<span>Coming Soon</span></div><div class="gallery-label">Project photos coming soon</div></div>
+    {% endfor %}
   </div>
-</section>
-
-<section class="section" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
-  <div class="container">
-    <div class="section-tag">Security Projects</div>
-    <h2 class="section-title">Security Systems</h2>
-  </div>
-  <div class="gallery-grid">
-    <div class="gallery-item has-photo"><img src="images/security.jpeg" alt="Security camera installation"><div class="gallery-label">Retail centre — CCTV install</div></div>
-    <div class="gallery-item"><div class="gallery-placeholder">🔐<span>Access Control</span></div><div class="gallery-label">Office HQ — Access control</div></div>
-    <div class="gallery-item"><div class="gallery-placeholder">🚨<span>Alarm System</span></div><div class="gallery-label">Warehouse — Alarm system</div></div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-tag">Solar Projects</div>
-    <h2 class="section-title">Solar Installations</h2>
-  </div>
-  <div class="gallery-grid">
-    <div class="gallery-item has-photo"><img src="images/solar-system.jpeg" alt="Solar panel installation"><div class="gallery-label">Farm property — Rooftop solar</div></div>
-    <div class="gallery-item"><div class="gallery-placeholder">🔋<span>Battery Backup</span></div><div class="gallery-label">Clinic — Battery backup</div></div>
-    <div class="gallery-item"><div class="gallery-placeholder">☀️<span>Commercial Solar</span></div><div class="gallery-label">Factory — Commercial solar</div></div>
-  </div>
-</section>
-
-<section class="section" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
-    <div class="container">
-      <div class="section-tag">Electrical Projects</div>
-      <h2 class="section-title">Residential &amp; Commercial</h2>
-    </div>
-
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <div class="gallery-placeholder">💡<span>Household Electrical</span></div>
-        <div class="gallery-label">Residential — Electrical installation &amp; lighting</div>
-      </div>
-
-      <div class="gallery-item">
-        <div class="gallery-placeholder">⚡<span>Electrical Installation</span></div>
-        <div class="gallery-label">Commercial — Electrical installation &amp; upgrades</div>
-      </div>
-
-      <div class="gallery-item">
-        <div class="gallery-placeholder">🔌<span>Electrical Repairs</span></div>
-        <div class="gallery-label">Residential &amp; Commercial — Fault finding &amp; repairs</div>
-      </div>
-    </div>
 </section>
 
 <div class="cta-banner">

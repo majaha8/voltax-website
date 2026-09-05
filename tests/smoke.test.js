@@ -125,13 +125,14 @@ test('internal links resolve to real routes', () => {
     const hrefs = [...html.matchAll(/(?:href|src)="([^"#]+)"/g)].map((m) => m[1]);
     for (const href of hrefs) {
       if (/^(https?:|mailto:|tel:)|^#$/.test(href)) continue;
+      const decodedHref = decodeURIComponent(href);
       let target;
-      if (href.startsWith('/')) {
-        target = path.join(dist, ROUTES[href] || href.slice(1) + '.html');
-      } else if (href.startsWith('public/')) {
-        target = path.join(dist, href);
+      if (decodedHref.startsWith('/')) {
+        target = path.join(dist, ROUTES[decodedHref] || decodedHref.slice(1) + '.html');
+      } else if (decodedHref.startsWith('public/')) {
+        target = path.join(dist, decodedHref);
       } else {
-        target = path.join(dist, href);
+        target = path.join(dist, decodedHref);
       }
       assert.ok(
         fs.existsSync(target),
