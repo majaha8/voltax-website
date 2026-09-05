@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node build.js",
     "start": "node build.js && node server.js",
-    "dev": "node build.js && node server.js",
+    "dev": "node dev.js",
     "test": "node --test tests/*.test.js",
     "lint": "node tests/lint.js"
   },

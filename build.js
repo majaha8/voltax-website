@@ -43,25 +43,36 @@ function getGalleryImages() {
 
 const galleryImages = getGalleryImages();
 
-fs.rmSync(outputDir, { recursive: true, force: true });
-fs.mkdirSync(outputDir, { recursive: true });
+function build() {
+  fs.rmSync(outputDir, { recursive: true, force: true });
+  fs.mkdirSync(outputDir, { recursive: true });
 
-for (const [outputFile, { template, active }] of Object.entries(PAGES)) {
-  const context = { active };
-  if (template === 'gallery.html') {
-    context.images = galleryImages;
+  const logs = [];
+  for (const [outputFile, { template, active }] of Object.entries(PAGES)) {
+    const context = { active };
+    if (template === 'gallery.html') {
+      context.images = galleryImages;
+    }
+    const rendered = nunjucks.render(template, context);
+    const outPath = path.join(outputDir, outputFile);
+    fs.writeFileSync(outPath, rendered);
+    logs.push(`built ${outputFile}`);
   }
-  const rendered = nunjucks.render(template, context);
-  const outPath = path.join(outputDir, outputFile);
-  fs.writeFileSync(outPath, rendered);
-  console.log(`built ${outputFile}`);
+
+  for (const asset of ASSETS) {
+    const from = path.join(srcDir, asset);
+    const to = path.join(outputDir, asset);
+    fs.cpSync(from, to, { recursive: true });
+    logs.push(`copied ${asset}`);
+  }
+
+  return logs;
 }
 
-for (const asset of ASSETS) {
-  const from = path.join(srcDir, asset);
-  const to = path.join(outputDir, asset);
-  fs.cpSync(from, to, { recursive: true });
-  console.log(`copied ${asset}`);
-}
+module.exports = { build, outputDir, srcDir };
 
-console.log('Build complete.');
+if (require.main === module) {
+  const logs = build();
+  logs.forEach((line) => console.log(line));
+  console.log('Build complete.');
+}
