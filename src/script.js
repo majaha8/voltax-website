@@ -85,4 +85,79 @@
       answer.style.maxHeight = answer.scrollHeight + 'px';
     }
   };
+
+  // ---- Auto-sliding card carousels ----
+  // Clone each card once so both the marquee ("How It Works") and the step
+  // carousel ("What We Do") can loop seamlessly.
+  document.querySelectorAll('[data-slider]').forEach(function (slider) {
+    var track = slider.querySelector('.card-slider-track');
+    if (!track) return;
+    var cards = Array.prototype.slice.call(track.children);
+    if (!cards.length) return;
+
+    cards.forEach(function (card) {
+      var clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      clone.querySelectorAll('a, button').forEach(function (el) { el.tabIndex = -1; });
+      track.appendChild(clone);
+    });
+  });
+
+  // Marquee ("How It Works"): continuous CSS scroll, ~2s screen time/card.
+  document.querySelectorAll('[data-slider]:not([data-step-slider])').forEach(function (slider) {
+    var track = slider.querySelector('.card-slider-track');
+    if (!track) return;
+    var cards = Array.prototype.slice.call(track.children);
+    if (!cards.length) return;
+    var duration = Math.max(cards.length * 2, 8);
+    slider.style.setProperty('--slide-duration', duration + 's');
+  });
+
+  // Step carousel ("What We Do"): hold, then slide forward one card every 10s.
+  document.querySelectorAll('[data-slider][data-step-slider]').forEach(function (slider) {
+    var track = slider.querySelector('.card-slider-track');
+    if (!track) return;
+    var cards = Array.prototype.slice.call(track.children).filter(function (el) {
+      return el.getAttribute('aria-hidden') !== 'true';
+    });
+    if (!cards.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var index = 0;
+    var timer = null;
+
+    function stepWidth() {
+      var first = track.children[0];
+      if (!first) return 0;
+      var gap = parseFloat(getComputedStyle(track).gap) || 0;
+      return first.getBoundingClientRect().width + gap;
+    }
+
+    function render() {
+      track.style.transform = 'translateX(-' + (index * stepWidth()) + 'px)';
+    }
+
+    function next() {
+      index += 3;
+      if (index >= cards.length) {
+        index = 0;
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(0)';
+        void track.offsetWidth;
+        track.style.transition = '';
+      }
+      render();
+    }
+
+    function pause() { if (timer) { clearInterval(timer); timer = null; } }
+    function resume() { if (!timer) timer = setInterval(next, 3000); }
+
+    slider.addEventListener('mouseenter', pause);
+    slider.addEventListener('mouseleave', resume);
+    slider.addEventListener('focusin', pause);
+    slider.addEventListener('focusout', resume);
+    window.addEventListener('resize', render);
+
+    resume();
+  });
 })();

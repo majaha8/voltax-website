@@ -1,5 +1,15 @@
 <nav class="nav">
-  <a href="/" class="nav-logo"><span class="bolt"><i class="fa-solid fa-bolt"></i></span>VOLT-WATT</a>
+  <a href="/" class="nav-logo">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 66 42" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <path class="mark-cable-stroke" d="M18 34 C6 34 6 14 20 14 L40 14" fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect class="mark-cable-fill" x="40" y="5" width="15" height="18" rx="4.5"/>
+        <rect class="mark-prong" x="55" y="7.5" width="9" height="4.6" rx="2"/>
+        <rect class="mark-prong" x="55" y="16" width="9" height="4.6" rx="2"/>
+      </svg>
+    </span>
+    <span class="brand-word">VOLT<span class="brand-accent">-WATT</span></span>
+  </a>
 
   <ul class="nav-links" id="navLinks">
     <li><a href="/" {% if active == 'home' %}class="active"{% endif %}>Home</a></li>
@@ -11,5 +21,5 @@
 
   <a href="tel:+27679912218" class="nav-phone"><span class="dot"></span>+27 67 991 2218</a>
   <a href="/contact" class="nav-cta">Get a Free Quote</a>
-  <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+  <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle menu"><i class="ph-bold ph-list"></i></button>
 </nav>

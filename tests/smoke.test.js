@@ -10,10 +10,10 @@ const dist = path.join(root, 'dist');
 const PAGES = ['index.html', 'about.html', 'services.html', 'gallery.html', 'contact.html'];
 const STYLESHEET = 'style.css';
 
-// Classes provided by the Bulma and Font Awesome CDN stylesheets, not by style.css
+// Classes provided by the Bulma and Phosphor Icons CDN stylesheets, not by style.css
 const FRAMEWORK_CLASSES = new Set(['is-overlay', 'columns', 'column', 'is-vcentered']);
 const isFrameworkClass = (cls) =>
-  FRAMEWORK_CLASSES.has(cls) || cls.startsWith('fa-') || /^(fa|fas|far|fab)\b/.test(cls);
+  FRAMEWORK_CLASSES.has(cls) || cls.startsWith('ph-') || /^ph\b/.test(cls);
 
 const read = (p) => fs.readFileSync(path.join(dist, p), 'utf8');
 

@@ -108,18 +108,22 @@ section, .page-header, .hero, .footer {
   gap: 0.5rem;
 }
 
-.nav-logo .bolt {
+.brand-mark {
   display: inline-grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  background: var(--amber-tint);
-  color: var(--amber-dark);
-  font-size: 0.95rem;
+  width: 42px;
+  height: 27px;
+  flex: 0 0 auto;
 }
 
-.nav-logo span { color: var(--navy-700); }
+.brand-mark svg { width: 100%; height: 100%; display: block; }
+
+.brand-mark .mark-cable-stroke { stroke: var(--navy-950); }
+.brand-mark .mark-cable-fill { fill: var(--navy-950); }
+.brand-mark .mark-prong { fill: var(--amber); }
+
+.brand-word { color: var(--navy-950); }
+.brand-accent { color: var(--navy-700); font-weight: 500; }
 
 .nav-links {
   display: flex;
@@ -524,10 +528,8 @@ section, .page-header, .hero, .footer {
 }
 
 .service-link::after {
-  content: "\f061";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  font-size: 0.85em;
+  content: "→";
+  font-size: 1em;
   transition: transform 0.2s ease;
 }
 .service-card:hover .service-link::after { transform: translateX(3px); }
@@ -616,6 +618,63 @@ section, .page-header, .hero, .footer {
 
 .process-card h3 { font-size: 1.12rem; margin-bottom: 0.6rem; color: #fff; }
 .process-card p { color: #a9bad3; font-size: 0.94rem; }
+
+/* ---------- SLIDING CARDS (auto-scrolling carousel) ---------- */
+
+.card-slider {
+  --slide-duration: 24s;
+  max-width: 1180px;
+  margin: 3rem auto 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+}
+
+.card-slider-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: card-slide var(--slide-duration) linear infinite;
+}
+
+.card-slider:hover .card-slider-track,
+.card-slider:focus-within .card-slider-track {
+  animation-play-state: paused;
+}
+
+@keyframes card-slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.card-slider .service-card,
+.card-slider .process-card {
+  flex: 0 0 300px;
+  width: 300px;
+}
+
+.card-slider .process-card::after { display: none !important; }
+
+.card-slider[data-cloned="true"] [aria-hidden="true"] { pointer-events: none; }
+
+/* Step carousel ("What We Do"): pause-then-slide, movement driven by script.js */
+.card-slider[data-step-slider] .card-slider-track {
+  animation: none;
+  transition: transform 0.65s cubic-bezier(0.45, 0.05, 0.35, 1);
+}
+
+@media (max-width: 640px) {
+  .card-slider .service-card,
+  .card-slider .process-card { flex-basis: 260px; width: 260px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-slider { -webkit-mask-image: none; mask-image: none; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 0.5rem; }
+  .card-slider-track { animation: none; }
+  .card-slider .service-card,
+  .card-slider .process-card { scroll-snap-align: start; }
+  .card-slider-track > [aria-hidden="true"] { display: none; }
+}
 
 /* ---------- WHY CHOOSE US ---------- */
 
@@ -1163,8 +1222,11 @@ section, .page-header, .hero, .footer {
 }
 
 .footer .nav-logo { color: #fff; }
-.footer .nav-logo span { color: #9db0cb; }
-.footer .nav-logo .bolt { background: rgba(245, 166, 35, 0.14); color: var(--amber); }
+.footer .brand-word { color: #fff; }
+.footer .brand-accent { color: #9db0cb; }
+.footer .brand-mark .mark-cable-stroke { stroke: #ffffff; }
+.footer .brand-mark .mark-cable-fill { fill: #ffffff; }
+.footer .brand-mark .mark-prong { fill: var(--amber); }
 
 .footer-brand p {
   color: #93a5c1;
