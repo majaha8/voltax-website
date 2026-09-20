@@ -25,6 +25,9 @@
 
   --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --duration: 1s;       /* how long each zoom-in takes            */
+  --row-delay: 250ms;   /* pause between one row and the next row */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -108,6 +111,17 @@ section, .page-header, .hero, .footer {
   gap: 0.5rem;
 }
 
+/* Image logo in the navbar (height drives the size; width follows the aspect ratio) */
+.nav-logo { flex-shrink: 0; }
+
+.nav-logo img {
+  display: block;
+  height: 50px;
+  width: auto;
+  max-width: none;   /* the global img { max-width: 100% } would squash it in a tight navbar */
+  flex: 0 0 auto;
+}
+
 .brand-mark {
   display: inline-grid;
   place-items: center;
@@ -171,6 +185,9 @@ section, .page-header, .hero, .footer {
 }
 
 .nav-cta:hover { background: var(--amber-dark); transform: translateY(-1px); }
+
+.nav-phone-item,
+.nav-cta-item { display: none; }
 
 .nav-toggle {
   display: none;
@@ -534,6 +551,21 @@ section, .page-header, .hero, .footer {
 }
 .service-card:hover .service-link::after { transform: translateX(3px); }
 
+/* ---------- SCROLL REVEAL (zoom-in, row by row) ---------- */
+
+html.js .reveal { opacity: 0; }
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale3d(.3, .3, .3); }
+  50%  { opacity: 1; }
+  to   { opacity: 1; transform: scale3d(1, 1, 1); }
+}
+
+html.js .reveal.in-view {
+  opacity: 1;
+  animation: zoomIn var(--duration) backwards;
+}
+
 /* ---------- PROCESS ---------- */
 
 .process-section {
@@ -674,6 +706,10 @@ section, .page-header, .hero, .footer {
   .card-slider .service-card,
   .card-slider .process-card { scroll-snap-align: start; }
   .card-slider-track > [aria-hidden="true"] { display: none; }
+  .why-card { opacity: 1; transform: none; transition: none; }
+  html.js .footer-inner > * { opacity: 1; transform: none; transition: none; }
+  html.js .reveal { opacity: 1; }
+  html.js .reveal.in-view { animation: none; }
 }
 
 /* ---------- WHY CHOOSE US ---------- */
@@ -691,11 +727,25 @@ section, .page-header, .hero, .footer {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 1.75rem 1.5rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  opacity: 0;
+  transform: translateY(24px) scale(0.75);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.why-grid.is-visible .why-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.why-grid.is-visible .why-card:nth-child(2) { transition-delay: 0.15s; }
+.why-grid.is-visible .why-card:nth-child(3) { transition-delay: 0.3s; }
+.why-grid.is-visible .why-card:nth-child(4) { transition-delay: 0.45s; }
+
+.why-grid.is-visible .why-card:hover {
+  transform: translateY(-4px);
 }
 
 .why-card:hover {
-  transform: translateY(-4px);
   box-shadow: var(--shadow);
   border-color: rgba(245, 166, 35, 0.4);
 }
@@ -1221,6 +1271,28 @@ section, .page-header, .hero, .footer {
   padding-bottom: 56px;
 }
 
+/* Footer columns: fade in + slide up, left to right, one-time reveal.
+   Gated behind html.js so content stays visible without JavaScript. */
+html.js .footer-brand,
+html.js .footer-inner > div:not(.footer-brand),
+html.js .footer-bottom {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+html.js .footer.footer-visible .footer-brand,
+html.js .footer.footer-visible .footer-inner > div:not(.footer-brand),
+html.js .footer.footer-visible .footer-bottom {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.js .footer.footer-visible .footer-inner > div:nth-child(1) { transition-delay: 0.1s; }
+html.js .footer.footer-visible .footer-inner > div:nth-child(2) { transition-delay: 0.25s; }
+html.js .footer.footer-visible .footer-inner > div:nth-child(3) { transition-delay: 0.4s; }
+html.js .footer.footer-visible .footer-bottom { transition-delay: 0.55s; }
+
 .footer .nav-logo { color: #fff; }
 .footer .brand-word { color: #fff; }
 .footer .brand-accent { color: #9db0cb; }
@@ -1305,6 +1377,12 @@ section, .page-header, .hero, .footer {
 /* ---------- RESPONSIVE ---------- */
 
 @media (max-width: 980px) {
+  /* tighten the navbar so logo + links + phone + CTA fit before the mobile menu kicks in */
+  .nav { gap: 1rem; }
+  .nav-links { gap: 1.1rem; }
+  .nav-links a, .nav-phone { font-size: 0.88rem; }
+  .nav-cta { padding: 0.6rem 1rem; font-size: 0.86rem; }
+  .nav-logo img { height: 44px; }
   .hero-media { max-width: 480px; }
   .services-grid,
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1323,6 +1401,8 @@ section, .page-header, .hero, .footer {
   .nav { gap: 1rem; }
   .nav-toggle { display: block; }
   .nav-cta, .nav-phone { display: none; }
+  .nav-phone-item .nav-phone { display: flex; padding: 0.9rem 0; font-size: 1rem; }
+  .nav-cta-item .nav-cta { display: block; text-align: center; margin-top: 0.5rem; }
   .nav-links {
     position: absolute;
     top: 100%;
@@ -1347,6 +1427,7 @@ section, .page-header, .hero, .footer {
 }
 
 @media (max-width: 600px) {
+  .nav-logo img { height: 42px; }
   .section { padding-top: 64px; padding-bottom: 64px; }
   .hero-body { padding-top: 24px; padding-bottom: 48px; }
   .hero-badge-float { position: static; margin-top: 1rem; }
@@ -1360,3 +1441,56 @@ section, .page-header, .hero, .footer {
   .contact-form { padding: 1.6rem; }
   .cta-banner { padding: 2.75rem 1.5rem; }
 }
+
+/* ---------- PARALLAX ---------- */
+
+/* Hero: background image lags behind the scrolling text */
+.page-header.parallax-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: clamp(260px, 42vh, 440px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #111;
+}
+
+.parallax-hero__bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -40%;            /* extra height so the image never runs out while it shifts */
+  height: 140%;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  will-change: transform;
+  transform: translate3d(0, var(--hero-y, 0px), 0);
+}
+
+.parallax-hero__shade {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 15, 25, 0.55);   /* keeps the title readable on any photo */
+  z-index: -1;
+}
+
+.page-header.parallax-hero h1,
+.page-header.parallax-hero p {
+  color: #fff;
+  position: relative;
+}
+
+/* Service images: photo drifts slowly inside its frame */
+.about-img { overflow: hidden; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .about-img img {
+    transform: translate3d(0, var(--img-y, 0px), 0) scale(1.18);
+    will-change: transform;
+  }
+}
+
+/* Keeps anchor targets clear of the sticky header when using the quick-nav links */
+section[id] { scroll-margin-top: 90px; }
