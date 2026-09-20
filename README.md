@@ -73,6 +73,16 @@ To edit content, change the templates in `src/templates/`, then run
 `npm start` (or `npm run build`) to regenerate `dist/`. Never edit files in
 `dist/` — they are overwritten on every build.
 
+## Run with Docker
+
+```bash
+docker build -t voltax .
+docker run -p 3000:3000 voltax     # visit http://localhost:3000
+```
+
+The image accepts a `PORT` environment variable; for example,
+`docker run -e PORT=8080 -p 8080:8080 voltax`.
+
 ## Documentation
 
 - [Installation guide](docs/INSTALLATION.md) — running and deploying the site
