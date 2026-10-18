@@ -58,34 +58,6 @@
     return false;
   };
 
-  // ---- FAQ accordion ----
-  window.toggleFaq = function (btn) {
-    var item = btn.closest('.faq-item');
-    if (!item) return;
-    var answer = item.querySelector('.faq-answer');
-    var isOpen = item.classList.contains('open');
-
-    // close any sibling that's open
-    var list = item.parentElement;
-    if (list) {
-      list.querySelectorAll('.faq-item.open').forEach(function (openItem) {
-        if (openItem !== item) {
-          openItem.classList.remove('open');
-          var a = openItem.querySelector('.faq-answer');
-          if (a) a.style.maxHeight = null;
-        }
-      });
-    }
-
-    if (isOpen) {
-      item.classList.remove('open');
-      answer.style.maxHeight = null;
-    } else {
-      item.classList.add('open');
-      answer.style.maxHeight = answer.scrollHeight + 'px';
-    }
-  };
-
   // ---- Scroll reveal: Why Choose Us cards ----
   // Cards zoom in, fade in and rise slightly when the grid scrolls into view;
   // the grid keeps them side-by-side, so only transform/opacity on each card animates.
@@ -171,9 +143,9 @@
     }
   }
 
-  // ---- Auto-sliding card carousels ----
-  // Clone each card once so both the marquee ("How It Works") and the step
-  // carousel ("What We Do") can loop seamlessly.
+  // ---- Auto-sliding card carousel ----
+  // Clone each card once so the step carousel ("What We Do") can loop
+  // seamlessly when it wraps back to the start.
   document.querySelectorAll('[data-slider]').forEach(function (slider) {
     var track = slider.querySelector('.card-slider-track');
     if (!track) return;
@@ -188,17 +160,7 @@
     });
   });
 
-  // Marquee ("How It Works"): continuous CSS scroll, ~2s screen time/card.
-  document.querySelectorAll('[data-slider]:not([data-step-slider])').forEach(function (slider) {
-    var track = slider.querySelector('.card-slider-track');
-    if (!track) return;
-    var cards = Array.prototype.slice.call(track.children);
-    if (!cards.length) return;
-    var duration = Math.max(cards.length * 2, 8);
-    slider.style.setProperty('--slide-duration', duration + 's');
-  });
-
-  // Step carousel ("What We Do"): hold, then slide forward one card every 10s.
+  // Step carousel ("What We Do"): hold, then slide forward one page every 10s.
   document.querySelectorAll('[data-slider][data-step-slider]').forEach(function (slider) {
     var track = slider.querySelector('.card-slider-track');
     if (!track) return;

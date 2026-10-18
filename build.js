@@ -17,6 +17,8 @@ const PAGES = {
 
 const ASSETS = ['style.css', 'script.js', 'images', 'public'];
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif']);
+// Branding files that live in src/images but are not project photos
+const NON_GALLERY_IMAGES = new Set(['logo.png']);
 
 nunjucks.configure(templateDir, { autoescape: false, throwOnUndefined: false });
 
@@ -26,7 +28,7 @@ function getGalleryImages() {
   const imagesDir = path.join(srcDir, 'images');
   return fs
     .readdirSync(imagesDir)
-    .filter((file) => IMAGE_EXTENSIONS.has(path.extname(file).toLowerCase()))
+    .filter((file) => IMAGE_EXTENSIONS.has(path.extname(file).toLowerCase()) && !NON_GALLERY_IMAGES.has(file))
     .sort()
     .map((file) => {
       const name = path.parse(file).name;
