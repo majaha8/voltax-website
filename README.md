@@ -25,11 +25,7 @@ templates. Pages are authored as templates in `src/templates/`, rendered to
 voltax/
 ├── README.md
 ├── LICENSE
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-├── SECURITY.md
 ├── .gitignore
-├── .env.example
 ├── package.json
 ├── package-lock.json
 ├── build.js              ← renders templates → dist/
@@ -50,44 +46,17 @@ voltax/
 │   └── public/           ← favicon, etc.
 │
 ├── dist/                 ← build output (git-ignored, generated)
-│
-├── tests/
-│   ├── smoke.test.js     ← page/asset/link/CSS-coverage checks
-│   └── lint.js           ← tag balance & hygiene checks
-│
-└── docs/
-    ├── INSTALLATION.md
-    ├── API.md
-    └── USER_GUIDE.md
 ```
 
 ## Quick Start
 
 ```bash
-npm start     # build + serve locally at http://localhost:3000 (PORT=8080 to change)
-npm test      # run smoke tests (Node built-in test runner)
-npm run lint  # tag-balance & hygiene checks
+npm start  # build + serve locally at http://localhost:3000 (PORT=8080 to change)
 ```
 
 To edit content, change the templates in `src/templates/`, then run
 `npm start` (or `npm run build`) to regenerate `dist/`. Never edit files in
 `dist/` — they are overwritten on every build.
-
-## Run with Docker
-
-```bash
-docker build -t voltax .
-docker run -p 3000:3000 voltax     # visit http://localhost:3000
-```
-
-The image accepts a `PORT` environment variable; for example,
-`docker run -e PORT=8080 -p 8080:8080 voltax`.
-
-## Documentation
-
-- [Installation guide](docs/INSTALLATION.md) — running and deploying the site
-- [API reference](docs/API.md) — client-side behaviour and form contract
-- [User guide](docs/USER_GUIDE.md) — editing content, colors, and images
 
 ## Contact
 

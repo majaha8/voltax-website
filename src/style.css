@@ -654,7 +654,6 @@ html.js .reveal.in-view {
 /* ---------- SLIDING CARDS (auto-scrolling carousel) ---------- */
 
 .card-slider {
-  --slide-duration: 24s;
   max-width: 1180px;
   margin: 3rem auto 0;
   overflow: hidden;
@@ -666,45 +665,25 @@ html.js .reveal.in-view {
   display: flex;
   gap: 1.5rem;
   width: max-content;
-  animation: card-slide var(--slide-duration) linear infinite;
 }
 
-.card-slider:hover .card-slider-track,
-.card-slider:focus-within .card-slider-track {
-  animation-play-state: paused;
-}
-
-@keyframes card-slide {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-.card-slider .service-card,
-.card-slider .process-card {
-  flex: 0 0 300px;
-  width: 300px;
-}
-
-.card-slider .process-card::after { display: none !important; }
+.card-slider .service-card { flex: 0 0 300px; width: 300px; }
 
 .card-slider[data-cloned="true"] [aria-hidden="true"] { pointer-events: none; }
 
-/* Step carousel ("What We Do"): pause-then-slide, movement driven by script.js */
+/* Step carousel ("What We Do"): hold, then slide forward one page; movement
+   driven by script.js */
 .card-slider[data-step-slider] .card-slider-track {
-  animation: none;
   transition: transform 0.65s cubic-bezier(0.45, 0.05, 0.35, 1);
 }
 
 @media (max-width: 640px) {
-  .card-slider .service-card,
-  .card-slider .process-card { flex-basis: 260px; width: 260px; }
+  .card-slider .service-card { flex-basis: 260px; width: 260px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .card-slider { -webkit-mask-image: none; mask-image: none; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 0.5rem; }
-  .card-slider-track { animation: none; }
-  .card-slider .service-card,
-  .card-slider .process-card { scroll-snap-align: start; }
+  .card-slider .service-card { scroll-snap-align: start; }
   .card-slider-track > [aria-hidden="true"] { display: none; }
   .why-card { opacity: 1; transform: none; transition: none; }
   html.js .footer-inner > * { opacity: 1; transform: none; transition: none; }
@@ -1052,71 +1031,6 @@ html.js .reveal.in-view {
   font-weight: 600;
 }
 
-/* ---------- FAQ ---------- */
-
-.faq-list {
-  max-width: 780px;
-  margin: 3rem auto 0;
-  display: grid;
-  gap: 0.9rem;
-}
-
-.faq-item {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-}
-
-.faq-question {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1.15rem 1.4rem;
-  background: none;
-  border: none;
-  font-family: inherit;
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: var(--navy-950);
-  text-align: left;
-  cursor: pointer;
-}
-
-.faq-question .plus {
-  flex-shrink: 0;
-  width: 26px;
-  height: 26px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--amber-tint);
-  color: var(--amber-dark);
-  font-size: 0.95rem;
-  font-weight: 700;
-  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
-}
-
-.faq-item.open .faq-question .plus {
-  transform: rotate(45deg);
-  background: var(--navy-950);
-  color: var(--amber);
-}
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.faq-answer p {
-  padding: 0 1.4rem 1.3rem;
-  color: var(--muted);
-  font-size: 0.94rem;
-}
-
 /* ---------- CTA BANNER ---------- */
 
 .cta-banner {
@@ -1266,7 +1180,7 @@ html.js .reveal.in-view {
   max-width: 1180px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 2.5rem;
   padding-bottom: 56px;
 }
@@ -1291,9 +1205,22 @@ html.js .footer.footer-visible .footer-bottom {
 html.js .footer.footer-visible .footer-inner > div:nth-child(1) { transition-delay: 0.1s; }
 html.js .footer.footer-visible .footer-inner > div:nth-child(2) { transition-delay: 0.25s; }
 html.js .footer.footer-visible .footer-inner > div:nth-child(3) { transition-delay: 0.4s; }
-html.js .footer.footer-visible .footer-bottom { transition-delay: 0.55s; }
+html.js .footer.footer-visible .footer-inner > div:nth-child(4) { transition-delay: 0.55s; }
+html.js .footer.footer-visible .footer-bottom { transition-delay: 0.7s; }
 
 .footer .nav-logo { color: #fff; }
+
+/* Footer logo reuses the same PNG as the navbar, so flatten it to a white
+   silhouette — the dark navy artwork is invisible against --navy-950.
+   Matches the .footer .brand-mark fill rules below. */
+.footer .nav-logo img {
+  height: 34px;
+  width: auto;
+  max-width: none;
+  flex: 0 0 auto;
+  filter: brightness(0) invert(1);
+}
+
 .footer .brand-word { color: #fff; }
 .footer .brand-accent { color: #9db0cb; }
 .footer .brand-mark .mark-cable-stroke { stroke: #ffffff; }
@@ -1389,7 +1316,7 @@ html.js .footer.footer-visible .footer-bottom { transition-delay: 0.55s; }
   .team-grid,
   .why-grid { grid-template-columns: repeat(2, 1fr); }
   .trust-grid { grid-template-columns: repeat(2, 1fr); }
-  .process-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .process-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
   .about-inner,
   .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -1435,7 +1362,8 @@ html.js .footer.footer-visible .footer-bottom { transition-delay: 0.55s; }
   .gallery-grid,
   .team-grid,
   .why-grid,
-  .trust-grid { grid-template-columns: 1fr; }
+  .trust-grid,
+  .process-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
   .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
   .contact-form { padding: 1.6rem; }
